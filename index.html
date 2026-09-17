@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="tr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AKİM Öğrenci Dergisi</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800;900&family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        akim: {
+                            dark: '#0a0a0a',
+                            darker: '#050505',
+                            light: '#e0dcd3',
+                            gray: '#8a8a8a',
+                            red: '#7a1919',
+                            reddark: '#4a0f0f'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                        display: ['Cinzel', 'serif'],
+                        quote: ['Cormorant Garamond', 'serif'],
+                    },
+                    backgroundImage: {
+                        'noise': "url('https://www.transparenttextures.com/patterns/stardust.png')",
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0a0a0a;
+            color: #e0dcd3;
+            background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #050505; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #333; 
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555; 
+        }
+
+        .text-shadow-hero {
+            text-shadow: 4px 4px 20px rgba(0,0,0,0.8);
+        }
+
+        .sepia-img {
+            filter: grayscale(80%) sepia(30%) contrast(1.1);
+            transition: all 0.5s ease;
+        }
+        
+        .group:hover .sepia-img {
+            filter: grayscale(20%) sepia(10%) contrast(1.1);
+            transform: scale(1.05);
+        }
+
+        .magazine-cover {
+            box-shadow: -5px 5px 15px rgba(0,0,0,0.7), inset 2px 0px 5px rgba(255,255,255,0.1);
+            position: relative;
+        }
+        .magazine-cover::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to right, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 5%, rgba(0,0,0,0) 95%, rgba(0,0,0,0.2) 100%);
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="antialiased overflow-x-hidden selection:bg-akim-red selection:text-white">
+
+    <nav class="fixed w-full z-50 top-0 left-0 bg-akim-darker/90 backdrop-blur-md border-b border-white/5 py-4 px-6 md:px-12 flex justify-between items-center transition-all duration-300">
+        <!-- Logo -->
+        <div class="flex flex-col items-start cursor-pointer group">
+            <h1 class="font-display font-bold text-2xl tracking-widest text-white group-hover:text-akim-light transition-colors">AKİM</h1>
+            <span class="text-[0.55rem] tracking-[0.2em] font-sans text-akim-gray uppercase">Öğrenci Dergisi</span>
+        </div>
+
+        <!-- Links (Desktop) -->
+        <div class="hidden md:flex space-x-10 text-[0.7rem] tracking-[0.15em] font-sans font-medium text-akim-gray">
+            <a href="#" class="hover:text-white transition-colors relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-0 after:h-[1px] after:bg-akim-red hover:after:w-full after:transition-all after:duration-300">01. SAYILAR</a>
+            <a href="#" class="hover:text-white transition-colors relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-0 after:h-[1px] after:bg-akim-red hover:after:w-full after:transition-all after:duration-300">02. YAZILAR</a>
+            <a href="#" class="hover:text-white transition-colors relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-0 after:h-[1px] after:bg-akim-red hover:after:w-full after:transition-all after:duration-300">03. YAZARLAR</a>
+            <a href="#" class="hover:text-white transition-colors relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-0 after:h-[1px] after:bg-akim-red hover:after:w-full after:transition-all after:duration-300">04. YAZI KURULU</a>
+            <a href="#" class="hover:text-white transition-colors relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-0 after:h-[1px] after:bg-akim-red hover:after:w-full after:transition-all after:duration-300">05. HAKKIMIZDA</a>
+        </div>
+
+        <!-- Right Side Icons -->
+        <div class="flex items-center space-x-6 text-akim-gray text-sm">
+            <button class="hover:text-white transition-colors"><i class="fa-solid fa-magnifying-glass"></i></button>
+            <span class="font-sans text-xs tracking-widest">[ TR ]</span>
+            <!-- Mobile Menu Toggle -->
+            <button class="md:hidden hover:text-white"><i class="fa-solid fa-bars text-lg"></i></button>
+        </div>
+    </nav>
+
+    <header class="relative w-full min-h-screen flex items-center justify-center pt-24 pb-12 overflow-hidden">
+        <!-- Hero Background Image with Overlay -->
+        <div class="absolute inset-0 z-0">
+            <!-- Using a classic architecture/statue placeholder for the mood -->
+            <img src="https://images.unsplash.com/photo-1549471013-3364d7220b75?q=80&w=2070&auto=format&fit=crop" alt="Hero Background" class="w-full h-full object-cover sepia-img opacity-40">
+            <div class="absolute inset-0 bg-gradient-to-b from-akim-darker/60 via-akim-dark/80 to-akim-dark"></div>
+            <div class="absolute inset-0 bg-noise opacity-30 mix-blend-overlay"></div>
+        </div>
+
+        <div class="container mx-auto px-6 md:px-12 relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+            
+            <!-- Left Text Content -->
+            <div class="col-span-1 lg:col-span-7 flex flex-col justify-center pt-10">
+                <div class="flex flex-col space-y-2 text-[0.65rem] tracking-[0.3em] font-sans text-akim-gray uppercase mb-16 border-l border-white/20 pl-4">
+                    <span>Düşünen,</span>
+                    <span>Tartışan,</span>
+                    <span>Yazan</span>
+                    <span>Bir</span>
+                    <span>Gençlik</span>
+                    <span>İçin.</span>
+                </div>
+                
+                <!-- Massive AKIM text overlapping everything -->
+                <h2 class="font-display font-black text-7xl md:text-9xl lg:text-[13rem] leading-none text-white opacity-90 text-shadow-hero mix-blend-overlay -ml-2 mb-8">
+                    AKİM
+                </h2>
+
+                <div class="flex justify-between items-end w-full max-w-lg">
+                    <p class="font-serif text-sm md:text-lg text-akim-light max-w-xs leading-relaxed italic">
+                        Tarih, <br>
+                        Bugün <br>
+                        Ve <br>
+                        Yarın <br>
+                        Arasında.
+                    </p>
+                    <a href="#son-yazilar" class="text-xs tracking-[0.2em] uppercase font-sans flex items-center gap-3 hover:text-white transition-colors group">
+                        Keşfet <span class="w-8 h-[1px] bg-akim-gray group-hover:bg-white group-hover:w-12 transition-all"></span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right Featured Cover -->
+            <div class="col-span-1 lg:col-span-5 flex justify-center lg:justify-end items-center relative perspective-1000">
+                <div class="relative w-64 md:w-80 lg:w-96 transform rotate-3 hover:rotate-0 transition-transform duration-500 magazine-cover bg-[#f4ebd0] p-4 text-center text-black flex flex-col">
+                    <h3 class="font-display font-bold text-5xl text-akim-red mb-2">AKİM</h3>
+                    <p class="font-serif font-bold text-sm uppercase leading-tight mb-4 tracking-wide">Amerikan<br>Emperyalizminin<br>Sonu</p>
+                    
+                    <!-- Cover Illustration Placeholder -->
+                    <div class="flex-grow flex items-center justify-center my-4">
+                        <img src="https://images.unsplash.com/photo-1554188248-986adbb563c1?q=80&w=800&auto=format&fit=crop" class="w-full h-48 object-cover sepia grayscale contrast-125 border border-black/20" alt="Cover Art">
+                    </div>
+                    
+                    <div class="text-[0.55rem] font-sans flex justify-between border-t border-black/20 pt-2 font-semibold">
+                        <span>SAYI: 2</span>
+                        <span>HAZİRAN 2026</span>
+                    </div>
+                </div>
+                
+                <!-- Side Text Decoration -->
+                <div class="hidden lg:flex absolute -right-8 top-1/2 -translate-y-1/2 flex-col items-center gap-6">
+                    <div class="text-center">
+                        <span class="block font-serif text-3xl text-akim-light">02</span>
+                        <span class="block font-sans text-[0.6rem] tracking-widest text-akim-gray">2026</span>
+                    </div>
+                    <div class="w-[1px] h-24 bg-white/20"></div>
+                    <span class="writing-vertical text-[0.6rem] tracking-[0.3em] font-sans uppercase text-akim-gray" style="writing-mode: vertical-rl;">Sayıyı İncele</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="son-yazilar" class="py-24 bg-akim-darker relative border-t border-white/5">
+        <div class="container mx-auto px-6 md:px-12">
+            
+            <!-- Section Header -->
+            <div class="flex justify-between items-end mb-16">
+                <div>
+                    <h2 class="font-serif text-4xl text-white mb-3">SON YAZILAR</h2>
+                    <p class="font-sans text-xs tracking-[0.2em] text-akim-gray uppercase">Güncel, Tarihsel, Kültürel</p>
+                </div>
+                <a href="#" class="hidden md:flex text-xs tracking-[0.2em] uppercase font-sans items-center gap-3 text-akim-gray hover:text-white transition-colors group">
+                    Tüm Yazılar <span class="w-8 h-[1px] bg-akim-gray group-hover:bg-white group-hover:w-12 transition-all"></span>
+                </a>
+            </div>
+
+            <!-- Articles Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
+                
+                <!-- Article Card 1 -->
+                <article class="group cursor-pointer flex flex-col h-full">
+                    <div class="overflow-hidden relative mb-6 pb-[60%] border border-white/10">
+                        <img src="https://images.unsplash.com/photo-1555660893-272e27b40974?q=80&w=1000&auto=format&fit=crop" alt="Statue of Liberty" class="absolute inset-0 w-full h-full object-cover sepia-img">
+                    </div>
+                    <div class="flex-grow flex flex-col justify-between">
+                        <div>
+                            <span class="font-serif text-2xl text-akim-red mb-3 block">01</span>
+                            <h3 class="font-serif text-2xl leading-snug text-akim-light mb-4 group-hover:text-white transition-colors">Dolar Hegemonyasının Çöküşü ve Yeni Dünya Düzeni</h3>
+                        </div>
+                        <div class="flex justify-between items-center mt-6 border-t border-white/10 pt-4">
+                            <span class="font-sans text-sm text-akim-gray">Muhammet Gürbüz</span>
+                            <button class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-akim-gray group-hover:border-white group-hover:text-white transition-all">
+                                <i class="fa-solid fa-arrow-right text-sm"></i>
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Article Card 2 -->
+                <article class="group cursor-pointer flex flex-col h-full">
+                    <div class="overflow-hidden relative mb-6 pb-[60%] border border-white/10">
+                        <img src="https://images.unsplash.com/photo-1582211516089-a93172e27602?q=80&w=1000&auto=format&fit=crop" alt="Soldiers" class="absolute inset-0 w-full h-full object-cover sepia-img">
+                    </div>
+                    <div class="flex-grow flex flex-col justify-between">
+                        <div>
+                            <span class="font-serif text-2xl text-akim-red mb-3 block">02</span>
+                            <h3 class="font-serif text-2xl leading-snug text-akim-light mb-4 group-hover:text-white transition-colors">Emperyalizmin Yeni Mezarı: Ezilen Halkların Zaferi</h3>
+                        </div>
+                        <div class="flex justify-between items-center mt-6 border-t border-white/10 pt-4">
+                            <span class="font-sans text-sm text-akim-gray">Yusuf Genç</span>
+                            <button class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-akim-gray group-hover:border-white group-hover:text-white transition-all">
+                                <i class="fa-solid fa-arrow-right text-sm"></i>
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Article Card 3 -->
+                <article class="group cursor-pointer flex flex-col h-full">
+                    <div class="overflow-hidden relative mb-6 pb-[60%] border border-white/10">
+                        <!-- Placeholder for Atatürk or historical portrait -->
+                        <img src="https://images.unsplash.com/photo-1588693895048-ce794ba98299?q=80&w=1000&auto=format&fit=crop" alt="Portrait" class="absolute inset-0 w-full h-full object-cover sepia-img grayscale">
+                    </div>
+                    <div class="flex-grow flex flex-col justify-between">
+                        <div>
+                            <span class="font-serif text-2xl text-akim-red mb-3 block">03</span>
+                            <h3 class="font-serif text-2xl leading-snug text-akim-light mb-4 group-hover:text-white transition-colors">Devrimcilik Üzerine</h3>
+                        </div>
+                        <div class="flex justify-between items-center mt-6 border-t border-white/10 pt-4">
+                            <span class="font-sans text-sm text-akim-gray">Nihat Genç</span>
+                            <button class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-akim-gray group-hover:border-white group-hover:text-white transition-all">
+                                <i class="fa-solid fa-arrow-right text-sm"></i>
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+            
+            <a href="#" class="md:hidden mt-12 text-xs tracking-[0.2em] uppercase font-sans flex items-center justify-center gap-3 text-akim-gray hover:text-white transition-colors group">
+                Tüm Yazılar <span class="w-8 h-[1px] bg-akim-gray group-hover:bg-white group-hover:w-12 transition-all"></span>
+            </a>
+        </div>
+    </section>
+
+    <section class="py-24 bg-akim-dark relative border-t border-white/5">
+        <div class="container mx-auto px-6 md:px-12">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8">
+                
+                <!-- Issues (Sayılar) -->
+                <div class="lg:col-span-5">
+                    <div class="flex justify-between items-end mb-10 border-b border-white/10 pb-4">
+                        <div>
+                            <h2 class="font-serif text-3xl text-white mb-2">SAYILAR</h2>
+                            <p class="font-sans text-[0.65rem] tracking-[0.2em] text-akim-gray uppercase">Tüm Sayılar, Tüm İzler</p>
+                        </div>
+                        <a href="#" class="text-[0.65rem] tracking-[0.2em] uppercase font-sans flex items-center gap-2 text-akim-gray hover:text-white transition-colors group">
+                            Tüm Sayılar <i class="fa-solid fa-arrow-right-long group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+                    </div>
+                    
+                    <div class="grid grid-cols-3 gap-4">
+                        <!-- Issue 1 -->
+                        <div class="group cursor-pointer">
+                            <div class="magazine-cover bg-[#dcd2c6] p-2 aspect-[2/3] flex flex-col items-center justify-center mb-3 transform group-hover:-translate-y-2 transition-transform duration-300">
+                                <h4 class="font-display text-xl text-akim-red mb-1">AKİM</h4>
+                                <div class="w-full h-16 bg-gray-400 mt-2 sepia opacity-80" style="background-image: url('https://placehold.co/100x150/333/fff?text=Art'); background-size: cover;"></div>
+                            </div>
+                            <h5 class="font-serif text-sm text-white group-hover:text-akim-red transition-colors">1. SAYI</h5>
+                            <p class="font-sans text-[0.6rem] tracking-widest text-akim-gray uppercase mt-1">Mart 2026</p>
+                        </div>
+                        <!-- Issue 2 -->
+                        <div class="group cursor-pointer">
+                            <div class="magazine-cover bg-[#f4ebd0] p-2 aspect-[2/3] flex flex-col items-center justify-center mb-3 transform group-hover:-translate-y-2 transition-transform duration-300">
+                                <h4 class="font-display text-xl text-akim-red mb-1">AKİM</h4>
+                                <div class="w-full h-16 bg-gray-400 mt-2 sepia opacity-80" style="background-image: url('https://placehold.co/100x150/555/fff?text=Art'); background-size: cover;"></div>
+                            </div>
+                            <h5 class="font-serif text-sm text-white group-hover:text-akim-red transition-colors">2. SAYI</h5>
+                            <p class="font-sans text-[0.6rem] tracking-widest text-akim-gray uppercase mt-1">Haziran 2026</p>
+                        </div>
+                        <!-- Issue 3 (Upcoming) -->
+                        <div class="group cursor-pointer">
+                            <div class="magazine-cover bg-akim-reddark p-2 aspect-[2/3] flex flex-col items-center justify-center mb-3 transform group-hover:-translate-y-2 transition-transform duration-300 opacity-70">
+                                <i class="fa-solid fa-lock text-white/30 text-2xl mb-2"></i>
+                                <span class="font-sans text-[0.5rem] tracking-widest text-white/50">GELİYOR</span>
+                            </div>
+                            <h5 class="font-serif text-sm text-white group-hover:text-akim-red transition-colors">3. SAYI</h5>
+                            <p class="font-sans text-[0.6rem] tracking-widest text-akim-gray uppercase mt-1">Yakında</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quote Section -->
+                <div class="lg:col-span-4 flex items-center justify-center px-4 relative">
+                    <!-- Faint background image element representing study/books -->
+                    <div class="absolute inset-0 opacity-10 bg-center bg-cover bg-no-repeat grayscale" style="background-image: url('https://images.unsplash.com/photo-1481627834876-b7833e8f5570?q=80&w=800&auto=format&fit=crop');"></div>
+                    
+                    <div class="relative z-10 text-center flex flex-col items-center">
+                        <span class="text-6xl text-akim-red font-serif leading-none mb-4 block">“</span>
+                        <blockquote class="font-quote text-3xl md:text-4xl italic text-akim-light leading-snug mb-6">
+                            Tarih, teslim olanları değil, <br> direnenleri yazar.
+                        </blockquote>
+                        <div class="w-12 h-[1px] bg-akim-gray"></div>
+                    </div>
+                </div>
+
+                <!-- Authors (Yazarlar) -->
+                <div class="lg:col-span-3 pl-0 lg:pl-8 border-l-0 lg:border-l border-white/10">
+                    <div class="mb-10 border-b border-white/10 pb-4">
+                        <h2 class="font-serif text-3xl text-white mb-2">YAZARLAR</h2>
+                        <p class="font-sans text-[0.65rem] tracking-[0.2em] text-akim-gray uppercase">Söz Yine Bizde</p>
+                    </div>
+
+                    <div class="flex flex-col gap-6">
+                        <!-- Author 1 -->
+                        <div class="flex items-center gap-4 group cursor-pointer">
+                            <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=150&auto=format&fit=crop" alt="Author" class="w-14 h-14 rounded-full object-cover border border-white/20 grayscale group-hover:grayscale-0 transition-all">
+                            <div>
+                                <h4 class="font-serif text-white group-hover:text-akim-red transition-colors">Muhammet Gürbüz</h4>
+                                <span class="font-sans text-[0.65rem] text-akim-gray">3 yazı</span>
+                            </div>
+                        </div>
+                        <!-- Author 2 -->
+                        <div class="flex items-center gap-4 group cursor-pointer">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=150&auto=format&fit=crop" alt="Author" class="w-14 h-14 rounded-full object-cover border border-white/20 grayscale group-hover:grayscale-0 transition-all">
+                            <div>
+                                <h4 class="font-serif text-white group-hover:text-akim-red transition-colors">Yusuf Genç</h4>
+                                <span class="font-sans text-[0.65rem] text-akim-gray">2 yazı</span>
+                            </div>
+                        </div>
+                        <!-- Author 3 -->
+                        <div class="flex items-center gap-4 group cursor-pointer">
+                            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=150&auto=format&fit=crop" alt="Author" class="w-14 h-14 rounded-full object-cover border border-white/20 grayscale group-hover:grayscale-0 transition-all">
+                            <div>
+                                <h4 class="font-serif text-white group-hover:text-akim-red transition-colors">Nihat Genç</h4>
+                                <span class="font-sans text-[0.65rem] text-akim-gray">1 yazı</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="#" class="mt-8 text-[0.65rem] tracking-[0.2em] uppercase font-sans flex items-center gap-2 text-akim-gray hover:text-white transition-colors group">
+                        Tüm Yazarlar <i class="fa-solid fa-arrow-right-long group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-akim-darker border-t border-white/10 pt-1">
+        <!-- CTA Banner -->
+        <div class="relative w-full h-64 md:h-80 overflow-hidden group cursor-pointer">
+            <img src="https://images.unsplash.com/photo-1524311915998-1e4285b00c50?q=80&w=2000&auto=format&fit=crop" alt="Istanbul Silhouette" class="absolute inset-0 w-full h-full object-cover sepia-img opacity-30 group-hover:opacity-40 transition-opacity duration-700">
+            <div class="absolute inset-0 bg-gradient-to-r from-akim-darker via-transparent to-akim-darker"></div>
+            
+            <div class="container mx-auto px-6 md:px-12 h-full flex flex-col md:flex-row items-center justify-between relative z-10">
+                <div class="pt-12 md:pt-0">
+                    <h3 class="font-quote italic text-3xl md:text-5xl text-white opacity-80 drop-shadow-lg">
+                        Daha adil <br> bir dünya <br> mümkün.
+                    </h3>
+                </div>
+                
+                <!-- CTA Box -->
+                <div class="bg-akim-red/90 backdrop-blur border border-white/10 p-8 md:p-12 w-full md:w-auto h-full flex flex-col justify-center transition-transform hover:bg-akim-red">
+                    <h4 class="font-serif text-2xl md:text-3xl text-white mb-3">AKİM'DA YAZ</h4>
+                    <p class="font-sans text-sm text-white/80 mb-6 max-w-[200px]">Sen de yazılarınla dergimize katılabilirsin.</p>
+                    <div class="flex items-center gap-4 text-white text-sm group-hover:translate-x-2 transition-transform">
+                        <span class="w-12 h-[1px] bg-white"></span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Footer -->
+        <div class="container mx-auto px-6 md:px-12 py-8 flex flex-col md:flex-row justify-between items-center gap-6">
+            <!-- Logo -->
+            <div class="flex flex-col items-center md:items-start">
+                <h2 class="font-display font-bold text-xl tracking-widest text-white">AKİM</h2>
+                <span class="text-[0.5rem] tracking-[0.2em] font-sans text-akim-gray uppercase">Öğrenci Dergisi</span>
+            </div>
+
+            <!-- Links -->
+            <div class="flex gap-8 text-[0.65rem] tracking-[0.2em] font-sans text-akim-gray uppercase">
+                <a href="#" class="hover:text-white transition-colors">Instagram</a>
+                <a href="#" class="hover:text-white transition-colors">İletişim</a>
+                <a href="#" class="hover:text-white transition-colors">Github</a>
+            </div>
+
+            <!-- Copyright & Back to top -->
+            <div class="flex items-center gap-6">
+                <p class="font-sans text-[0.65rem] text-akim-gray">© 2026 AKİM Dergisi. Tüm hakları saklıdır.</p>
+                <a href="#" class="w-8 h-8 rounded border border-white/10 flex items-center justify-center text-akim-gray hover:text-white hover:border-white transition-all">
+                    <i class="fa-solid fa-arrow-up text-xs"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
